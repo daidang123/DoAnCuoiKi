@@ -67,3 +67,14 @@ $('.material').owlCarousel({
 });
 
 
+$(".menu-main li").hover(
+  function() {
+    $(this).find(".sub-menu").slideDown();
+  },
+  function() {
+    $(this).find(".sub-menu").slideUp();
+  }
+);
+
+
+

@@ -14,3 +14,14 @@ function showPlaceholder() {
 }
 
 const placeholderInterval = setInterval(showPlaceholder, 200);
+
+
+
+// <!-- Top-Header./Start -->
+
+const closeTopHeader = document.querySelector('.close-top-header');
+const topHeader = document.querySelector('.top-header');
+
+closeTopHeader.addEventListener('click', () => {
+  topHeader.style.display='none'
+});
