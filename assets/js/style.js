@@ -25,3 +25,21 @@ const topHeader = document.querySelector('.top-header');
 closeTopHeader.addEventListener('click', () => {
   topHeader.style.display='none'
 });
+
+
+
+
+/* <!-- review-product--> */
+
+const imageList = document.querySelectorAll('.images-right img');
+
+
+const imagesLeft = document.querySelector('.images-left');
+
+
+imageList.forEach((image) => {
+  image.addEventListener('click', () => {
+    const imagePath = image.getAttribute('src');
+    imagesLeft.innerHTML = `<img src="${imagePath}" alt="">`;
+  });
+});
