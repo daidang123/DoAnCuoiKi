@@ -398,6 +398,7 @@ body .owl-nav {
 .main-header .list-right-menu ul li a {
   display: flex;
   text-align: center;
+  position: relative;
   text-decoration: none;
   color: #000000;
 }
@@ -411,6 +412,18 @@ body .owl-nav {
 .main-header .list-right-menu ul li a span {
   margin-left: 5px;
   font-size: 15px;
+}
+.count-cart {
+  position: absolute;
+  bottom: 20px;
+  right: 55px;
+  font-size: 12px !important;
+  background: #ff7b1c;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
 }
 
 .header-mainMenu {
@@ -1121,6 +1134,11 @@ footer {
   margin: 0px 0 7px 0;
 }
 
+
+
+
+/* details-product */
+
 /* <!-- review-product--> */
 
 .breadcrumbs {
@@ -1149,9 +1167,16 @@ footer {
 .images-left  {
  position: relative;
  box-sizing: border-box;
+
 }
 .images-left img {
   width: 100%;
+}
+.images-right img {
+  border: 2px solid #fff;
+}
+.images-right img.selected {
+  border-color:#F67227;
 }
 .images-left .slick-next-1 {
     border: none;
@@ -1187,10 +1212,177 @@ footer {
  width: unset;
  margin-bottom: 10px;
 }
+.product_info_view {
+  padding: 0 15px;
+}
+.wrap_name_heart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrap_name_heart h1 {
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 1.1px;
+  color: #000;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.wrap_name_heart a {
+  background: #fff;
+  color: #000;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrap_name_heart p {
+  font-size: 13px;
+}
+.price {
+  text-align: right;
+  display: inline-block;
+  width: 100%;
+}
+.price span {
+  font-weight: 700;
+  font-size: 19px;
+  color: #F67227;
+  text-transform: uppercase;
+  display: block;
+}
+.material-detail {
+  display: flex;
+  align-items: center;
+  padding: 25px 0 10px 00;
+  border-bottom: 1px solid #b4b4b4; 
+}
+.material-detail p {
+  margin-bottom: 0;
+  width: 40%;
+}
+.swatch-color {
+  padding-top: 30px;
+}
+.title_select_color {
+  margin-bottom: 0px;
+}
+.title_pro_info {
+  text-transform: uppercase;
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+}
 
+.req {
+  margin-bottom: 0;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.req a {
+  border: 1px solid #eee;
+  border-radius: 50%;
+  padding: 0;
+  display: inline-block;
+  margin: 0 15px 5px 0;
+  font-weight: 500;
+  background-color: #eee;
+  text-transform: uppercase;
+  position: relative;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  display: flex; 
+}
+.req a.active, .req a:hover, .req a:focus{
+  border: 2px solid #f67227;
+}
 
-
-
+.req a span {
+  position: absolute;
+  top: -25px;
+  color: #fff;
+  text-align: center;
+  background-color: #f67227;
+  display: inline-block;
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-size: 10px;
+  display: none;
+}
+.req.size a{
+  border-radius: 0;
+  width: auto;
+  height: 30px;
+  line-height: 30px;
+  font-size: 15px;
+  color: #d0d0d2;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #d0d0d2;
+  padding: 0 10px;
+}
+.req.size a.active, .req.size a:hover, .req.size a:focus{
+  color:#fff;
+  background-color:#fe8b3a;
+}
+.openGuide {
+  color: #fc893a;
+  text-decoration: underline;
+  font-size: 13px;
+  display: inline-block;
+  margin-top: 5px;
+}
+.quantity {
+  display: flex;
+  gap: 10px;
+  padding-top: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+.input_number_product {
+  display: flex;
+  height: 35px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+.input_number_product button {
+background-color: transparent;
+font-size: 10px;
+color: #000;
+outline: unset;
+width: 30px;
+border: none;
+}
+.input_number_product input {
+  width: 60px;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  color: #000;
+  font-weight: 700;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+.quantity .buttonPush {
+  height: 35px;
+  border: 1px solid #f67227;
+  color:#F67227;
+  background-color: #fff;
+  text-transform: uppercase;
+}
+.quantity .buttonPush-2 {
+  height: 35px;
+  background-color: #F67227;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+}
 
 
 
