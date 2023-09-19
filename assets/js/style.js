@@ -99,12 +99,38 @@ linkList.forEach((link) => {
   
 });
 
-linkList.forEach((link) => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault(); // Ngăn chặn hành vi mặc định khi nhấn vào liên kết
-    linkList.forEach((otherLink) => {
-      otherLink.classList.remove('active');
-    });
-    link.classList.add('active');
-  });
+
+
+
+const goToDetail = (event) => {
+  event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+  const detailPageURL = 'detail-product.html'; // Thay thế bằng đường dẫn thực tế đến trang chi tiết
+  window.location.href = detailPageURL;
+};
+
+const quickViewClicked = (event) => {
+  event.stopPropagation();
+
+  const modal = document.querySelector('.quickViewModal');
+  modal.classList.add('show');
+};
+
+// Lắng nghe sự kiện click trên trang web
+document.addEventListener('click', (event) => {
+  const target = event.target;
+
+  // Kiểm tra xem sự kiện click xảy ra bên trong hoặc là khối quickViewModal
+  if (target.closest('.quickViewModal')) {
+    return; // Nếu là bên trong quickViewModal, không làm gì cả
+  }
+
+  // Nếu không, ẩn khối quickViewModal
+  modal.classList.remove('show');
+});
+
+
+
+const quickViewButtons = document.querySelectorAll('.quickView');
+quickViewButtons.forEach((button) => {
+  button.addEventListener('click', quickViewClicked);
 });
