@@ -1,3 +1,17 @@
+// quickViewModal
+// $(document).on('click', function(event) {
+//   if(!$('.quickViewModal').get(0).contains(event.target) && !$(event.target).hasClass('quickView')) {
+//     $('.quickViewModal').hide();
+//   }
+// });
+
+// $('.quickView').each(function(){
+//   $(this).click(function(){
+//   $('.quickViewModal').toggle();
+// })
+
+
+// });
 
 // <!-- Main menu. Search /Start / -->
 
@@ -108,29 +122,24 @@ const goToDetail = (event) => {
   window.location.href = detailPageURL;
 };
 
-const quickViewClicked = (event) => {
-  event.stopPropagation();
 
-  const modal = document.querySelector('.quickViewModal');
-  modal.classList.add('show');
-};
 
-// Lắng nghe sự kiện click trên trang web
-document.addEventListener('click', (event) => {
-  const target = event.target;
 
-  // Kiểm tra xem sự kiện click xảy ra bên trong hoặc là khối quickViewModal
-  if (target.closest('.quickViewModal')) {
-    return; // Nếu là bên trong quickViewModal, không làm gì cả
+// <!-- quickViewModal -->
+
+const quickViews = document.querySelectorAll('.quickView');
+const quickViewModal = document.querySelector('.quickViewModal');
+
+quickViews.forEach(quickView => {
+  quickView.addEventListener('click', () => {
+    quickViewModal.style.top = '0%';
+  });
+});
+quickViewModal.addEventListener('click', (event) => {
+  if (event.target.classList.contains('quickViewModal')) {
+    quickViewModal.style.top = '100%';
   }
-
-  // Nếu không, ẩn khối quickViewModal
-  modal.classList.remove('show');
 });
 
 
-
-const quickViewButtons = document.querySelectorAll('.quickView');
-quickViewButtons.forEach((button) => {
-  button.addEventListener('click', quickViewClicked);
-});
+// cart
