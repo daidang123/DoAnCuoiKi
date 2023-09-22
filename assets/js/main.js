@@ -24,12 +24,12 @@ $(document).ready(function () {
 });
 
 
-$('.product-hot').owlCarousel({
+$('.product-hot-1').owlCarousel({
   loop: true, //Vong lap trong slider
   margin: 30, //Khoang cach giua cac item
   nav: true, //Dieu huong slider
   autoplay: true, //slider tu dong chay
-  autoplayTimeout: 3500, //Toc do chay don vi ms
+  autoplayTimeout: 3500, //Toc dos chay don vi ms
   autoplayHoverPause: true,
   responsive:{
         0: {

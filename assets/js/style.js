@@ -82,6 +82,11 @@ nextButton.addEventListener('click', () => {
   }
 });
 
+
+
+
+
+
 // Hàm cập nhật ảnh và đường viền
 function updateSelectedImage() {
   const selectedImage = imageList[currentIndex];
@@ -95,6 +100,10 @@ function updateSelectedImage() {
   // Thêm lớp CSS "selected" cho ảnh hiện tại
   selectedImage.classList.add('selected');
 }
+
+
+
+
 
 
 //chon mau san pham
@@ -125,21 +134,97 @@ const goToDetail = (event) => {
 
 
 
-// <!-- quickViewModal -->
 
-const quickViews = document.querySelectorAll('.quickView');
-const quickViewModal = document.querySelector('.quickViewModal');
 
-quickViews.forEach(quickView => {
-  quickView.addEventListener('click', () => {
-    quickViewModal.style.top = '0%';
+
+
+
+const API_URL = 'https://api-doan-vskd.vercel.app/posts'
+const productEl = document.querySelector('#product-hot');
+const newProductList =document.querySelector('#new-product-list')
+const getApi= async(API_URL)=>{
+  const response = await axios.get(API_URL);
+  showData(response.data)
+}
+getApi(API_URL);
+
+const showData = (data) => {
+  let HTML = ``;
+  data.forEach((item,index) => {
+    console.log(item ,'gia tri cua mang');
+    if (index < 4)  {
+      HTML +=
+     `
+     <div class="item product col-12 col-sm-4 col-md-3">
+      <div class="product-image">
+        <a href="#" onclick="goToDetail(event)">
+        <img src="${item.src}" alt="">
+        </a>
+        <div class="box_action">
+          <div class="quickView"  onclick="showQuickViewModal(${index})">
+            Xem Nhanh
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="quickLink" onclick="goToDetail(event)">
+            Chi tiết
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+        </div>
+        <div class="boxTagIcon">
+          <div class="tagProItem tagCalcItem">
+            <span>-30%</span>
+          </div>
+          <div class="tagProItem tagNewItem">
+            <span>New</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-title">
+        <a href="#" onclick="goToDetail(event)">Bộ pijamas linen áo dài quần dài ST9083</a>
+      </div>
+      <div class="product-price">
+        <s class="product-price-old">292,250₫</s>
+        <span class="product-price-current">242,250₫</span>
+      </div>
+    </div>  
+     `;
+    } 
+     productEl.innerHTML=HTML
+     newProductList.innerHTML=HTML
   });
+  
+}
+const showQuickViewModal = (index) => {
+  const quickViewModal = document.querySelector('#quickViewModal');
+  quickViewModal.style.display = 'block';
+
+  // Các logic khác để hiển thị thông tin chi tiết sản phẩm
+};
+
+const quickViewModal = document.querySelector('#quickViewModal');
+const reviewProduct = document.querySelector('.review-product');
+
+quickViewModal.addEventListener('mousedown', (event) => {
+  event.stopPropagation();
 });
-quickViewModal.addEventListener('click', (event) => {
-  if (event.target.classList.contains('quickViewModal')) {
-    quickViewModal.style.top = '100%';
+
+reviewProduct.addEventListener('mousedown', (event) => {
+  event.stopPropagation();
+});
+
+document.addEventListener('mousedown', (event) => {
+  if (!reviewProduct.contains(event.target)) {
+    quickViewModal.style.display = 'none';
   }
 });
 
 
-// cart
+
+
+
+
+
+
+
+
+
