@@ -84,12 +84,14 @@
                   </a>
                 </li>
                 <li>
-                  <a href="cart.html">
-                  <i class="fas fa-shopping-cart"></i>
-                  <span>Giỏ Hàng</span>
-                  <span class="count-cart">0</span>
+                  <div id="cart">
+                    <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Giỏ Hàng</span>
+                    <span class="count-cart">0</span>
                   </a>
-              </li>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -273,7 +275,7 @@
       <div class="col-12">
         <h3 class="title_product">Sản phẩm mới</h3>
         <div class="product-hot row" id="new-product-list" >
-          <div class="item product col-12 col-sm-4 col-md-3">
+          <div class="item product col-12 col-sm-6 col-md-3">
             <div class="product-image">
               <a href="#" onclick="goToDetail(event)">
                 <img src="/assets/images/product-img-1.jpeg" alt="">
@@ -529,116 +531,7 @@
           <span class="product-price-current">242,250₫</span>
         </div>
       </div>   
-      <div class="item product col-12 col-sm-4 col-md-3">
-        <div class="product-image">
-          <a href="#" onclick="goToDetail(event)">
-            <img src="/assets/images/product-img-1.jpeg" alt="">
-          </a>
-          <div class="box_action">
-            <div class="quickView">
-              Xem Nhanh
-              <i class="fas fa-eye"></i>
-            </div>
-            <div class="quickLink" onclick="goToDetail(event)">
-              Chi tiết
-              <i class="fas fa-shopping-cart"></i>
-            </div>
-          </div>
-          <div class="boxTagIcon">
-            <div class="tagProItem tagCalcItem">
-              <span>-30%</span>
-            </div>
-            <div class="tagProItem tagNewItem">
-              <span>New</span>
-            </div>
-          </div>
-        </div>
-        <div class="product-title">
-          <a href="#" onclick="goToDetail(event)">Bộ pijamas linen áo dài quần dài ST9083</a>
-        </div>
-        <div class="product-price">
-          <s class="product-price-old">292,250₫</s>
-          <span class="product-price-current">242,250₫</span>
-        </div>
-      </div>
-      <div class="item product col-12 col-sm-4 col-md-3">
-        <div class="product-image">
-          <a href="#" onclick="goToDetail(event)">
-            <img src="/assets/images/product-img-1.jpeg" alt="">
-          </a>
-          <div class="box_action">
-            <div class="quickView">
-              Xem Nhanh
-              <i class="fas fa-eye"></i>
-            </div>
-            <div class="quickLink" onclick="goToDetail(event)">
-              Chi tiết
-              <i class="fas fa-shopping-cart"></i>
-            </div>
-          </div>
-          <div class="boxTagIcon">
-            <div class="tagProItem tagCalcItem">
-              <span>-30%</span>
-            </div>
-            <div class="tagProItem tagNewItem">
-              <span>New</span>
-            </div>
-          </div>
-        </div>
-        <div class="product-title">
-          <a href="#" onclick="goToDetail(event)">Bộ pijamas linen áo dài quần dài ST9083</a>
-        </div>
-        <div class="product-price">
-          <s class="product-price-old">292,250₫</s>
-          <span class="product-price-current">242,250₫</span>
-        </div>
-      </div> 
-      <div class="item product col-12 col-sm-4 col-md-3">
-        <div class="product-image">
-          <a href="#" onclick="goToDetail(event)">
-            <img src="/assets/images/product-img-1.jpeg" alt="">
-          </a>
-          <div class="box_action">
-            <div class="quickView" onclick="showQuickViewModal(event)" data-index="${index}">
-              Xem Nhanh
-              <i class="fas fa-eye"></i>
-            </div>
-            <div class="quickLink" onclick="goToDetail(event)">
-              Chi tiết
-              <i class="fas fa-shopping-cart"></i>
-            </div>
-          </div>
-          <div class="boxTagIcon">
-            <div class="tagProItem tagCalcItem">
-              <span>-30%</span>
-            </div>
-            <div class="tagProItem tagNewItem">
-              <span>New</span>
-            </div>
-          </div>
-        </div>
-        <div class="product-title">
-          <a href="#" onclick="goToDetail(event)">Bộ pijamas linen áo dài quần dài ST9083</a>
-        </div>
-        <div class="product-price">
-          <s class="product-price-old">292,250₫</s>
-          <span class="product-price-current">242,250₫</span>
-        </div>
-      </div>
-            
-
-
-
-
-
-
-
-
-
-      
-      
-
-        
+       
     </div>
   </div>
 </div>
@@ -715,44 +608,56 @@
         <i class="fas fa-chevron-right"></i>
        </a>
     </div>
-      <div class="product-hot-1 owl-carousel owl-theme">
-
-        <div class="item product">
-          <div class="product-image">
-            <a href="#" onclick="goToDetail(event)">
-              <img src="/assets/images/product-img-1.jpeg" alt="">
-            </a>
-            <div class="box_action">
-              <div class="quickView">
-                Xem Nhanh
-                <i class="fas fa-eye"></i>
-              </div>
-              <div class="quickLink" onclick="goToDetail(event)">
-                Chi tiết
-                <i class="fas fa-shopping-cart"></i>
-              </div>
+    <div class="product-hot row " id="custom-2" >
+      <div class="item product col-12 col-sm-4 col-md-3">
+        <div class="product-image">
+          <a href="#" onclick="goToDetail(event)">
+            <img src="/assets/images/product-img-1.jpeg" alt="">
+          </a>
+          <div class="box_action">
+            <div class="quickView">
+              Xem Nhanh
+              <i class="fas fa-eye"></i>
             </div>
-            <div class="boxTagIcon">
-              <div class="tagProItem tagCalcItem">
-                <span>-30%</span>
-              </div>
-              <div class="tagProItem tagNewItem">
-                <span>New</span>
-              </div>
+            <div class="quickLink" onclick="goToDetail(event)">
+              Chi tiết
+              <i class="fas fa-shopping-cart"></i>
             </div>
           </div>
-          <div class="product-title">
-            <a href="#" onclick="goToDetail(event)">Bộ pijamas linen áo dài quần dài ST9083</a>
+          <div class="boxTagIcon">
+            <div class="tagProItem tagCalcItem">
+              <span>-30%</span>
+            </div>
+            <div class="tagProItem tagNewItem">
+              <span>New</span>
+            </div>
           </div>
-          <div class="product-price">
-            <s class="product-price-old">292,250₫</s>
-            <span class="product-price-current">242,250₫</span>
-          </div>
-        </div>   
+        </div>
+        <div class="product-title">
+          <a href="#" onclick="goToDetail(event)">Bộ pijamas linen áo dài quần dài ST9083</a>
+        </div>
+        <div class="product-price">
+          <s class="product-price-old">292,250₫</s>
+          <span class="product-price-current">242,250₫</span>
+        </div>
+      </div>   
+
+   
+    </div>
 
 
 
-      </div>
+
+
+
+
+
+
+      
+      
+
+        
+    </div>
   
     
    </div>
@@ -765,23 +670,24 @@
       <div class="row">
           <div class="col-md-5 col-sm-12 col-12">
               <div class="images-review">
-                <div class="images-left">
-                  <img src="" alt="" id="mainImage">
-                  <button class="slick-next-1">
+                <div class="images-left" id="images-left">
+                  <div class="slick-carousel">
+                    <img src="/assets/images/images-review-1.jpeg" alt="" id="mainImage">
+                  </div>
+                  
+                  <button class="slick-next-1 slick-prev">
                     <i class="far fa-angle-left"></i>
                   </button>
-                  <button class="slick-next-2">
+                  <button class="slick-next-2 slick-next">
                     <i class="far fa-angle-right"></i>
                   </button>
                 </div>
                 <div class="images-right" id="images-right">
-                  <img src="/assets/images/images-review-1.jpeg" alt="">
-                  <img src="/assets/images/images-review-2.jpeg" alt="">
-                  <img src="/assets/images/images-review-3.jpeg" alt="">
-                  <img src="/assets/images/images-review-4.jpeg" alt="">
+                <img src="" alt="">
                 </div>
               </div>
           </div>
+          
           <div class="col-md-7 col-sm-12 col-12">
               <div class="product_info_view">
                   <div class="wrap_name_heart">
@@ -790,11 +696,11 @@
                   </div>
                   <p id="product-code">Mã sản phẩm : SFA1019</p>
                   <div class="price ">
-                      <span class="product-price" id="reviewProductPrice" >245,000 vnđ</span>
+                      <span class="product-price" id="reviewProductPrice" ></span>
                   </div>
-                  <div class="material-detail" id="materialDetail">
+                  <div class="material-detail" id="">
                       <p>Chất Liệu</p>
-                      <p></p>
+                      <p id="materialDetail"></p>
                   </div>
                   <div class="action_button">
                       <div class="swatch-color">
@@ -802,10 +708,10 @@
                           <span class="title_pro_info">Chọn màu sắc:</span>
                           <span class="appendColor"></span>
                         </p>
-                        <p class="req">
-                          <a href="#" style="background-color:beige;"><span>Be</span></a>
-                          <a href="#" style="background-color: black;"><span>Đen</span></a>
-                          <a href="#" style="background-color: white;"><span>Trắng</span></a>
+                        <p class="req" id="req">
+                          <a href="#"><span>Be</span></a>
+                          <a href="#" ><span>Trắng</span></a>
+                          <a href="#"><span>Đen</span></a>
                         </p>
                           
                       </div>
@@ -814,24 +720,29 @@
                               <span class="title_pro_info">Chọn kích thước:</span>
                               <span class="appendSize"></span>
                           </div>
-                          <p class="size req">
-                              <a href="#">S</a>
-                              <a href="#">M</a>
-                              <a href="#">L</a>
+                          <p class="size req" id="size">
+                              <a href="#"></a>
+                              <a href="#"></a>
+                              <a href="#"></a>
+                              
                           </p>
                           <a class="openGuide" href="#">Hướng dẫn chọn size</a>
-                          <div class="quantity">
+                          <div class="quantity" id="quantity">
                               <div class="col-lg-3 input_number_product">
-                                  <button class="">
+                                  <button class="minus-button" id="minus-button">
                                       <i class="fa fa-minus"></i>
                                   </button>
                                   <input type="text" value="1" min="1">
-                                  <button>
+                                  <button class="plus-button" id="plus-button">
                                       <i class="fa fa-plus"></i>
                                   </button>
                               </div>
-                              <button class="col-lg-4 btnHover addtoCart">
+                              <button class="col-lg-4 btnHover addtoCart" id="addtoCart">
                                   <span>Thêm vào giỏ hàng</span>
+                              </button>
+
+                              <button class="col-lg-4 btnHover ">
+                                <span>Mua ngay</span>
                               </button>
                             
                           </div>
@@ -841,7 +752,7 @@
               </div>
           </div>
       </div>
-       <div class="close-modal">
+      <div class="close-modal">
         <i class="fa-solid fa-xmark"></i>
       </div>
   </div>

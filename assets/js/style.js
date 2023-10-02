@@ -1,5 +1,4 @@
 
-
 // <!-- Main menu. Search /Start / -->
 
 const input = document.getElementById('search');
@@ -28,45 +27,28 @@ closeTopHeader.addEventListener('click', () => {
 });
 
 
-//chon mau san pham
-
-const linkList = document.querySelectorAll('.req a');
-
-linkList.forEach((link) => {
-  link.addEventListener('mouseenter', () => {
-    link.querySelector('span').style.display = 'inline-block';
-  });
-
-  link.addEventListener('mouseleave', () => {
-    link.querySelector('span').style.display = 'none';
-
-  });
-  
-});
-
-
-
-
 const goToDetail = (event) => {
   event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
   const detailPageURL = 'detail-product.html'; // Thay thế bằng đường dẫn thực tế đến trang chi tiết
   window.location.href = detailPageURL;
 };
 
+function updateCartItemCount() {
+  var count = localStorage.getItem('cartItemCount') || 0;
+  $('.count-cart').text(count);
+}
+
+updateCartItemCount();
 
 
-
-
-
-
-
-
-const API_URL = 'https://api-doan-mwh3.vercel.app/posts'
+const API_URL = 'https://api-doan-1kgf.vercel.app/posts'
 const productEl = document.querySelector('#product-hot');
-const newProductList =document.querySelector('#new-product-list')
+const newProductList =document.querySelector('#new-product-list');
+const custom2 = document.querySelector('#custom-2')
+var imagesLeft = document.getElementById("images-left");
 const getApi= async(API_URL)=>{
   const response = await axios.get(API_URL);
-  showData(response.data)
+  showData(response.data);
 }
 getApi(API_URL);
 
@@ -74,16 +56,14 @@ const showData = (data) => {
   let HTML = '';
   data.forEach((item, index) => {
     if (index < 4) {
-      const imgsPath = item.imgs_path.join(',');
-
       HTML += `
-        <div class="item product col-12 col-sm-4 col-md-3" data-material="${item.material}" data-author="${item.author}" data-imgs-path="${imgsPath}">
+        <div class="item product col-12 col-sm-6 col-md-3" data-material="${item.material}" data-author="${item.author}" >
           <div class="product-image">
             <a href="#" onclick="goToDetail(event)">
               <img src="${item.src}" alt="">
             </a>
             <div class="box_action">
-              <div class="quickView" onclick="showQuickViewModal(${index})">
+              <div class="quickView" onclick="showPopup(${index})">
                 Xem Nhanh
                 <i class="fas fa-eye"></i>
               </div>
@@ -105,8 +85,8 @@ const showData = (data) => {
             <a href="#" onclick="goToDetail(event)">${item.title_product}</a>
           </div>
           <div class="product-price">
-            <s class="product-price-old">${item.price_old}</s>
-            <span class="product-price-current">${item.price_current}</span>
+            <s class="product-price-old">${item.price_old} VNĐ</s>
+            <span class="product-price-current">${item.price_current} VNĐ</span>
           </div>
         </div>
       `;
@@ -115,132 +95,292 @@ const showData = (data) => {
 
   productEl.innerHTML = HTML;
   newProductList.innerHTML = HTML;
+  custom2.innerHTML = HTML;
 };
 
-const showQuickViewModal = (index) => {
-  const quickViewModal = document.querySelector('#quickViewModal');
-  quickViewModal.style.display = 'block';
 
-  // Lấy dữ liệu từ khối product tương ứng
-  const product = document.querySelectorAll('.product')[index];
-  const title = product.querySelector('.product-title').innerText;
-  const price = product.querySelector('.product-price-current').innerText;
-  const material = product.dataset.material;
-  const author = product.dataset.author;
-  const imgsPath = product.dataset.imgsPath.split(',');
 
-  // Đổ dữ liệu vào khối review-product
-  const reviewProductModal = document.querySelector('#reviewProductModal');
-  const reviewProductTitle = document.querySelector('#reviewProductTitle');
-  const reviewProductPrice = document.querySelector('#reviewProductPrice');
-  const materialDetail = document.querySelector('#materialDetail');
-  const productCode = document.querySelector('#product-code');
-  const imagesRight = document.querySelector('#images-right');
 
-  reviewProductTitle.innerText = title;
-  reviewProductPrice.innerText = price;
-  materialDetail.lastElementChild.innerText = material;
-  productCode.innerText = `Mã sản phẩm: ${author}`;
 
-  // Xóa các hình ảnh hiện tại trong khối "images-right"
-  imagesRight.innerHTML = '';
 
-  // Thêm các hình ảnh mới vào khối "images-right"
-  imgsPath.forEach((path) => {
-    const img = document.createElement('img');
-    img.src = path;
-    img.alt = '';
-    imagesRight.appendChild(img);
+function showPopup(index) {
+  var product = '';
+  var content = '';
+  fetch(API_URL)
+  .then(response => response.json())
+  .then(data => {
+    product = data[index];
+    $('#mainImage').attr('src', product.src)
+    $('.images-right').empty();
+    var imageCount = 0;
+    $.each(product.colors, function(index, item) {
+
+      $.each(item.imgs_path, function(i,imgs_path) {
+        
+        if (imageCount < 5) { // Chỉ thêm ảnh khi số lượng chưa đạt tới 5
+          content = `
+            <img src="${imgs_path}" alt="" data-color="${item.color}">
+          `;
+          $('.images-right').append(content);
+          imageCount++;
+        } else {
+          return false; // Dừng việc lặp nếu số lượng ảnh đã đạt tới 5
+        }
+
+      });
+    
+    });
+    $('#quickViewModal').show();
+    $('#reviewProductTitle').text(product.title_product);
+    $('#product-code').text('Mã sản phẩm: ' + product.author);
+    $('#reviewProductPrice').text(product.price_current);
+    $('#materialDetail').text(product.material);
+
+
+
+
+
+
+
+
+    // chon mau san pham
+    // Cập nhật phần 'req' với các màu
+ 
+$('#req').empty(); // Xóa nội dung hiện tại
+$.each(product.colors, function(index, item) {
+  var span = $('<span>').text(item.title);
+  var a = $('<a>').attr('href', '#').append(span);
+  var color = item.color;
+  a.css('background-color', color);
+  a.on('click', function(event) {
+    event.preventDefault();
+   
+    // Xóa lớp active của tất cả các thẻ a trong #req
+    $('#req a').removeClass('active');
+
+    // Thêm lớp active cho thẻ a được chọn
+    a.addClass('active');
+
+    // Truyền nội dung của thẻ span vào thẻ span có lớp "appendColor"
+    $('.appendColor').text(a.find('span').text());
   });
 
-  // Hiển thị khối review-product
-  reviewProductModal.style.display = 'block';
-};
-
-const closeModal = document.querySelector('.close-modal');
-closeModal.addEventListener('click', () => {
-  const quickViewModal = document.querySelector('#quickViewModal');
-  quickViewModal.style.display = 'none';
+  // Thêm thẻ a vào khối #req
+  $('#req').append(a);
 });
 
-/* <!-- review-product--> */
+  // chọn size sản phẩm
 
-// const imagesRight = document.querySelector('.images-right');
-// const imagesLeft = document.querySelector('.images-left');
+  const sizeContainer = $('#size');
+  sizeContainer.empty();
+  $.each(product.size, function(index, size) {
+    const link = $('<a>').attr('href', '#').text(size);
+    sizeContainer.append(link);
+    link.on('click', function(event) {
+      event.preventDefault();
+  
+      $('#size a').removeClass('active');
+  
+      // Thêm lớp active cho thẻ a được chọn
+      link.addClass('active');
+  
+      // Truyền nội dung của thẻ a vào khối appendSize
+      $('.appendSize').text(link.text());
+    });
+  });
 
-// // Lấy danh sách tất cả các ảnh trong phần images-right
-// const imageList = imagesRight.querySelectorAll('img');
-// const prevButton = imagesLeft.querySelector('.slick-next-1');
-// const nextButton = imagesLeft.querySelector('.slick-next-2');
+ 
 
-// let currentIndex = 0;
 
-// // Hiển thị ảnh đầu tiên trong phần images-left
-// imagesLeft.querySelector('img').src = imageList[currentIndex].src;
+    $('.images-right img').click(function() {
+      var selectedImage = $(this).attr('src');
+      $('#mainImage').attr('src', selectedImage);
 
-// // Thêm sự kiện click vào từng ảnh trong danh sách
-// imageList.forEach((image, index) => {
-//   image.addEventListener('click', () => {
-//     currentIndex = index;
-//     updateSelectedImage();
-//   });
-// });
+      // Xóa viền đỏ từ ảnh trước đó được chọn
+      $('.images-right img').removeClass('selected');
 
-// // Sự kiện click nút previous
-// prevButton.addEventListener('click', () => {
-//   if (currentIndex > 0) {
-//     currentIndex--;
-//     updateSelectedImage();
-//   }
-// });
+      // Thêm viền đỏ vào ảnh được nhấp chuột
+      $(this).addClass('selected');
+    });
 
-// // Sự kiện click nút next
-// nextButton.addEventListener('click', () => {
-//   if (currentIndex < imageList.length - 1) {
-//     currentIndex++;
-//     updateSelectedImage();
-//   }
-// });
+    // Xử lý sự kiện khi nhấp chuột vào slick-next-2
+    $('.slick-next-2').click(function() {
+      var selectedImage = $('.images-right img.selected');
+      var nextImage = selectedImage.next('img');
+      if (nextImage.length === 0) {
+        nextImage = $('.images-right img').first();
+      }
+      var nextImageSrc = nextImage.attr('src');
+      $('#mainImage').attr('src', nextImageSrc);
+      selectedImage.removeClass('selected');
+      nextImage.addClass('selected');
+    });
 
-// // Hàm cập nhật ảnh và đường viền
-// function updateSelectedImage() {
-//   const selectedImage = imageList[currentIndex];
-//   imagesLeft.querySelector('img').src = selectedImage.src;
+    // Xử lý sự kiện khi nhấp chuột vào slick-next-1
+    $('.slick-next-1').click(function() {
+      var selectedImage = $('.images-right img.selected');
+      var prevImage = selectedImage.prev('img');
+      if (prevImage.length === 0) {
+        prevImage = $('.images-right img').last();
+      }
+      var prevImageSrc = prevImage.attr('src');
+      $('#mainImage').attr('src', prevImageSrc);
+      selectedImage.removeClass('selected');
+      prevImage.addClass('selected');
+    });
 
-//   // Xóa lớp CSS "selected" của tất cả các ảnh trong danh sách
-//   imageList.forEach((img) => {
-//     img.classList.remove('selected');
-//   });
+  })
+  .catch(error => {
+    console.log("Co loi");
+  });
 
-//   // Thêm lớp CSS "selected" cho ảnh hiện tại
-//   selectedImage.classList.add('selected');
-// }
-const imagesRight = document.querySelector('#images-right');
-const mainImage = document.querySelector('#mainImage');
+  const closeModal = document.querySelector('.close-modal');
+  const quickViewModal = document.querySelector('#quickViewModal');
+  closeModal.addEventListener('click', () => {
+    quickViewModal.style.display = 'none';
+  });
+  
 
-const imagesRightImg = document.querySelectorAll('.images-right img');
 
-if (imagesRightImg.length > 0) {
-  const firstImageSrc = imagesRightImg[0].src;
-  mainImage.src = firstImageSrc;
 }
 
 
 
-imagesRight.addEventListener('click', (event) => {
-  if (event.target.tagName === 'IMG') {
-    const clickedImageSrc = event.target.src;
-    mainImage.src = clickedImageSrc;
 
-    // Xóa lớp 'active-image' cho tất cả các hình ảnh trong khối images-right
-    const allImages = imagesRight.querySelectorAll('img');
-    allImages.forEach((image) => {
-      image.classList.remove('active-image');
-    });
 
-    // Thêm lớp 'active-image' cho ảnh được nhấp vào
-    event.target.classList.add('active-image');
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const minusButton = document.querySelector('#minus-button');
+  const plusButton = document.querySelector('#plus-button');
+  const quantityInput = document.querySelector('.input_number_product input');
+  const addtoCartButtons = document.querySelectorAll('.addtoCart');
+
+  // Xử lý sự kiện khi người dùng nhấp vào nút "minus"
+  minusButton.addEventListener('click', function() {
+    let quantity = parseInt(quantityInput.value);
+    if (quantity > 1) {
+      quantity--;
+      quantityInput.value = quantity;
+    }
+  });
+
+  // Xử lý sự kiện khi người dùng nhấp vào nút "plus"
+  plusButton.addEventListener('click', function() {
+    let quantity = parseInt(quantityInput.value);
+    quantity++;
+    quantityInput.value = quantity;
+  });
+
+  // Các xử lý sự kiện khác ở đây
+
+});
+showPopup();
+
+
+
+
+
+
+
+
+// Xử lý sự kiện khi nhấn vào nút "Thêm vào giỏ hàng"
+
+
+
+
+
+// Kiểm tra xem đã chọn màu và kích thước chưa
+$('#addtoCart').on('click', function(event) {
+  event.preventDefault();
+
+  var selectedColor = $('.appendColor').text();
+  var selectedSize = $('.appendSize').text();
+
+  if (selectedColor !== '' && selectedSize !== '') {
+    // Thực hiện sự kiện "Add to Cart" chỉ khi đã chọn màu và kích thước
+    addToCart();
+    quickViewModal.style.display = 'none';
+    $('.appendColor').empty();
+    $('.appendSize').empty();
+  } else {
+    // Hiển thị thông báo cho người dùng rằng họ cần chọn màu và kích thước
+    alert('Vui lòng chọn màu và kích thước sản phẩm trước khi thêm vào giỏ hàng.');
   }
+
 });
 
-á
+
+
+
+
+// Hàm thực hiện sự kiện "Add to Cart"
+function addToCart() {
+  // Lấy thông tin sản phẩm
+  var productName = $('#reviewProductTitle').text();
+  var productPrice = $('#reviewProductPrice').text();
+  var productImage = $('#mainImage').attr('src');
+  var productCode = $('#product-code').text();
+  var selectedColor = $('.appendColor').text();
+  var selectedSize = $('.appendSize').text();
+  var quantityValue =  $('#quantity input').val();
+
+  // Kiểm tra xem mảng cartItems đã tồn tại trong Local Storage chưa
+  var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng hay chưa
+  var existingItem = cartItems.find(function(item) {
+    return item.name === productName;
+  });
+
+  if (existingItem) {
+    alert('Sản phẩm đã có trong giỏ hàng');
+  } else {
+    alert('Đã thêm sản phẩm vào giỏ hàng');
+    var newItem = {
+      name: productName,
+      price: productPrice,
+      image: productImage,
+      code: productCode,
+      color: selectedColor,
+      size: selectedSize,
+      value: quantityValue,
+    };
+    cartItems.push(newItem);
+
+    // Lưu mảng cartItems vào Local Storage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    console.log('Sản phẩm đã được thêm vào giỏ hàng.');
+  }
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
