@@ -27,9 +27,12 @@ closeTopHeader.addEventListener('click', () => {
 });
 
 
-const goToDetail = (event) => {
-  event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-  const detailPageURL = 'detail-product.html'; // Thay thế bằng đường dẫn thực tế đến trang chi tiết
+const goToDetail = (event, index = null) => {
+   event.preventDefault();
+  var urlParams = new URLSearchParams(window.location.search);
+  urlParams.set('product-id', index); // Set the new value for 'product-id'
+
+  var detailPageURL = 'detail-product.html' + '#' + urlParams.toString();
   window.location.href = detailPageURL;
 };
 
@@ -41,7 +44,7 @@ function updateCartItemCount() {
 updateCartItemCount();
 
 
-const API_URL = 'https://api-doan-1kgf.vercel.app/posts'
+const API_URL = 'https://api-doan-rrbe.vercel.app/posts'
 const productEl = document.querySelector('#product-hot');
 const newProductList =document.querySelector('#new-product-list');
 const custom2 = document.querySelector('#custom-2')
@@ -67,7 +70,7 @@ const showData = (data) => {
                 Xem Nhanh
                 <i class="fas fa-eye"></i>
               </div>
-              <div class="quickLink" onclick="goToDetail(event)">
+              <div class="quickLink" onclick="goToDetail(event,${index})">
                 Chi tiết
                 <i class="fas fa-shopping-cart"></i>
               </div>
@@ -97,11 +100,6 @@ const showData = (data) => {
   newProductList.innerHTML = HTML;
   custom2.innerHTML = HTML;
 };
-
-
-
-
-
 
 function showPopup(index) {
   var product = '';
@@ -234,6 +232,18 @@ $.each(product.colors, function(index, item) {
     console.log("Co loi");
   });
 
+
+
+
+
+
+
+
+
+
+
+
+  
   const closeModal = document.querySelector('.close-modal');
   const quickViewModal = document.querySelector('#quickViewModal');
   closeModal.addEventListener('click', () => {
@@ -277,21 +287,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Các xử lý sự kiện khác ở đây
 
 });
-showPopup();
-
-
-
-
 
 
 
 
 // Xử lý sự kiện khi nhấn vào nút "Thêm vào giỏ hàng"
-
-
-
-
-
 // Kiểm tra xem đã chọn màu và kích thước chưa
 $('#addtoCart').on('click', function(event) {
   event.preventDefault();
@@ -311,11 +311,6 @@ $('#addtoCart').on('click', function(event) {
   }
 
 });
-
-
-
-
-
 // Hàm thực hiện sự kiện "Add to Cart"
 function addToCart() {
   // Lấy thông tin sản phẩm

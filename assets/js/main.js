@@ -23,28 +23,6 @@ $(document).ready(function () {
 
 });
 
-
-$('.product-hot-1').owlCarousel({
-  loop: true, //Vong lap trong slider
-  margin: 30, //Khoang cach giua cac item
-  nav: true, //Dieu huong slider
-  autoplay: true, //slider tu dong chay
-  autoplayTimeout: 3500, //Toc dos chay don vi ms
-  autoplayHoverPause: true,
-  responsive:{
-        0: {
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:5,
-            
-        }
-    }
-});
-
 $('.material').owlCarousel({
   loop: true, //Vong lap trong slider
   margin: 30, //Khoang cach giua cac item
@@ -75,6 +53,9 @@ $(".menu-main li").hover(
     $(this).find(".sub-menu").slideUp();
   }
 );
+
+
+
 
 
 

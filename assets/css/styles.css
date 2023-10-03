@@ -601,6 +601,29 @@ min-height: 60px;
   flex-direction: column; 
 }
 
+.back_top {
+  border: 1px solid #ccc;
+  position: fixed;
+  right: 15px;
+  bottom: 110px;
+  z-index: 99;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  transition-duration: .6s;
+  display: none;
+  background: #fff;
+  border-radius: 50%;
+  text-align: center;
+  color: #a3a1a2;
+  transition: all .4s;
+  font-weight: 700;
+}
+
+
 
 
 
@@ -1046,16 +1069,19 @@ color: #f67227;
 
 
 /* <!-- footer /start --> */
-footer {
+
+footer{
   margin-top: 30px;
 }
 
-.footer-start {
+.footertop {
   background-color: #ededed;
   padding: 30px 0 20px;
+  font-size: 13px;
+  font-weight: 400px;
+  line-height: 1.5rem;
 }
-
-.right-footer img {
+.blockLogoFooter img {
     max-width: 150px;
 }
 .sub-logo {
@@ -1074,6 +1100,7 @@ footer {
   list-style: initial;
   padding-left: 15px;
 }
+
 .list-footer ul li{
   margin-bottom: 7px;
 }
@@ -1082,7 +1109,7 @@ footer {
   color: #000000;
 }
 
-.list-footer p {
+.contentChildFooter p {
   margin-bottom: 7px;
 }
 
@@ -1128,14 +1155,28 @@ footer {
   align-items: center;
   margin-right: 25px;
 }
-
-.title-footer-first {
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #3a3a3a;
-  margin: 0px 0 7px 0;
+.listEcom a:first-child img{
+  transform: scale(3) translateY(-2px);
 }
+
+.copyRight{
+  background-color: #F67227;
+  color: #fff;
+  text-align: center;
+}
+.copyRight p{
+  margin-bottom: 0;
+  padding: 7px 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+
+
+
+
+
+
 
 
 
