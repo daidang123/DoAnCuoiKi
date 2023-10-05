@@ -350,7 +350,25 @@ function addToCart() {
     console.log('Sản phẩm đã được thêm vào giỏ hàng.');
   }
 }
- 
+
+
+
+
+
+const openMenuMobile = () => {
+  event.preventDefault();
+  $('.backdrop_body, .closeMenuMobile, .menu-main-mobile').addClass('active');
+  $('body').addClass('overflow-y');
+};
+
+const closeMenuMobile = () => {
+  event.preventDefault();
+  $('body').removeClass('overflow-y');
+  $('.backdrop_body, .closeMenuMobile, .menu-main-mobile').removeClass('active');
+};
+
+$('.openMenuMobile').click(openMenuMobile);
+$('.closeMenuMobile').click(closeMenuMobile);
 
 
 

@@ -28,7 +28,7 @@
 <header>
     <!-- Top-Header./Start -->
     <div class="top-header">
-      <div class="owl-carousel">
+      <div class=" main-top-header owl-carousel">
         <div class="item">
           <p>
             TỔNG XẢ KHO - THỜI TRANG DẠO PHỐ GIẢM 50%
@@ -55,20 +55,26 @@
     <div class="main-header">
       <div class="container">
       <div class=" row box-main-header">
-          <div class="col-md-2">
+          <div class="col-12 col-sm-12 col-md-2 flex-mobile">
           <div class="logo">
               <a href="/"><img src="/assets/images/logo.jpg" alt=""></a>
           </div>
+          <div class="menu-mobile">
+            <div class="openMenuMobile">
+              <i class="far fa-bars"></i>
+            </div>
           </div>
-  
-          <div class="col-md-6 searchMobile">
+          
+          
+          </div>
+           <div class="col-md-6 searchMobile">
           <form class="form-search" action="/search">
           <label for="search"></label>
           <input type="text" name="q" id="search" placeholder="Bạn cần tìm gì?">
           </form>
           </div>
   
-          <div class="col-md-4">
+          <div class="col-md-4 menu-right">
           <div class="list-right-menu">
               <ul>
               <li>
@@ -230,11 +236,10 @@
   <!-- Slider./Start -->
   <div class="slider-main">
     <div class="flash-sale">
-      <div class="owl-carousel owl-theme">
+      <div class=" banner-main owl-carousel owl-theme">
         <div class="item">
           <a href="."><img src="/assets/images/banner.jpeg" alt="slider 1">
         </a>
-      
         </div>
         <div class="item">
           <a href="."><img src="/assets/images/banner.jpeg" alt="slider 1">
@@ -252,7 +257,7 @@
     <div class="categort-list_tittle">
       <h4 class="title_site">DANH MỤC NỔI BẬT</h4>
     </div>
-    <div class="list-clothes">
+    <div class="list-clothes owl-carousel owl-theme">
       <div class="category-item">
         <a href="$"><img src="/assets/images/category-item-1.webp" alt="quan nu"></a>
         <a href="$">Quần nữ</a>
@@ -315,7 +320,7 @@
     <div class="row">
       <div class="col-12">
         <h3 class="title_product">Sản phẩm mới</h3>
-        <div class="product-hot row" id="new-product-list" >
+        <div class="product-hot row " id="new-product-list" >
           <div class="item product col-12 col-sm-6 col-md-3">
             <div class="product-image">
               <a href="#" onclick="goToDetail(event)">
@@ -444,20 +449,7 @@
               <span class="product-price-current">242,250₫</span>
             </div>
           </div>
-                
-    
-    
-    
-    
-    
-    
-    
-    
-    
-          
-          
-    
-            
+              
         </div>
        
 
@@ -473,7 +465,7 @@
 <div class="product-material">
   <div class="container">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 material-padding ">
         <div class="product-material-item ">
           <div class="product-material-tittle">Chất liệu nổi bật
           </div>
@@ -874,7 +866,7 @@
   
   
         <div class="col-md-3">
-          <div class="title_footer mt-md-0">Công ty trách nhiệm hữu hạn Minh Hương</div>
+          <div class="title_footer mt-md-0">Công ty trách nhiệm hữu hạn Viet Nam</div>
           <div class="contentChildFooter">
             <ul>
               <li> <strong>Địa chỉ:</strong><span>Lô A2 -CN1, Đường CN6, Khu CN Từ Liêm, P. Minh Khai, Q. Bắc Từ Liêm, Hà Nội</span></li>
@@ -902,12 +894,70 @@
     </div>
   </div>
   <div class="copyRight">
-    <div class="copyRight"><p></p><p>Copyrights © 2022 by Sunfly &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Powered by Minh Hương P.N.D</p><p></p></div>
+    <div class="copyRight"><p></p><p>Copyrights © 2022 by Sunfly &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Powered by Xuân Đại DXD </p><p></p></div>
   </div>
 
 </div>
 
+<!-- menu-main-mobile/start -->
+<div class="menu-main-mobile">
+  <div class="menu-item">
+    <div class="layer-category">
+      <ul class="menuList-links">
+        <li>
+          <a href="/">Sản phẩm</a>
+          <i class="fas fa-caret-right"></i>
+        </li>
+        <li>
+          <a href="/">Đồ Mặc nhà</a>
+          <i class="fas fa-caret-right"></i>
+        </li>
+        <li>
+          <a href="/">Đồ Dạo phố</a>
+          <i class="fas fa-caret-right"></i>
+        </li>
+        <li>
+          <a href="/">BỘ SƯU TẬP</a>
+          <i class="fas fa-caret-right"></i>
+        </li>
+        <li>
+          <a href="/">KHUYẾN MÃI</a>
+          <i class="fas fa-caret-right"></i>
+        </li>
+        <li>
+          <a href="/">Hỗ trợ Khách hàng</a>
+          <i class="fas fa-caret-right"></i>
+        </li>
+        
+      </ul>
 
+    </div>
+  </div>
+
+  <div class="bottomMenuMobile">
+    <a href="/">
+      <i class="fas fa-shopping-cart"></i>
+    </a>
+    <a href="tel:0355120872">
+      <i class="fas fa-phone-volume"></i>
+    </a>
+    <a href="/">
+      <i class="fas fa-user"></i>
+    </a>
+  </div>
+</div>
+<div class="closeMenuMobile active">
+  <i class="fas fa-times"></i>
+</div>
+<div class="backdrop_body active"></div>
+
+<div class="btn-toggle-social">
+  <i class="fa-brands fa-rocketchat"></i>
+</div>
+
+<div class="back_top hien" style="display: block;">
+  <i class="fa-solid fa-arrow-up"></i>
+  <span>TOP</span></div>
 
 
 
