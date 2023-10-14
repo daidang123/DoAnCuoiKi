@@ -1,50 +1,23 @@
 
-// <!-- Main menu. Search /Start / -->
-
-const input = document.getElementById('search');
-const placeholderText = input.getAttribute('placeholder');
-let placeholderIndex = 0;
-
-function showPlaceholder() {
-  input.setAttribute('placeholder', placeholderText.slice(0, placeholderIndex));
-  placeholderIndex++;
-  if (placeholderIndex > placeholderText.length) {
-    placeholderIndex = 0;
-  }
-}
-
-const placeholderInterval = setInterval(showPlaceholder, 200);
-
-
-
-// <!-- Top-Header./Start -->
-
-const closeTopHeader = document.querySelector('.close-top-header');
-const topHeader = document.querySelector('.top-header');
-
-closeTopHeader.addEventListener('click', () => {
-  topHeader.style.display='none'
-});
-
 
 const goToDetail = (event, index = null) => {
-   event.preventDefault();
-  var urlParams = new URLSearchParams(window.location.search);
-  urlParams.set('product-id', index); // Set the new value for 'product-id'
+  event.preventDefault();
+ var urlParams = new URLSearchParams(window.location.search);
+ urlParams.set('product-id', index); // Set the new value for 'product-id'
 
-  var detailPageURL = 'detail-product.html' + '#' + urlParams.toString();
-  window.location.href = detailPageURL;
+ var detailPageURL = 'detail-product.html' + '#' + urlParams.toString();
+ window.location.href = detailPageURL;
 };
 
 function updateCartItemCount() {
-  var count = localStorage.getItem('cartItemCount') || 0;
-  $('.count-cart').text(count);
+ var count = localStorage.getItem('cartItemCount') || 0;
+ $('.count-cart').text(count);
 }
 
 updateCartItemCount();
 
 
-const API_URL = 'https://api-doan-rrbe.vercel.app/posts'
+const API_URL = 'https://api-doan-cizl.vercel.app/posts'
 const productEl = document.querySelector('#product-hot');
 const newProductList =document.querySelector('#new-product-list');
 const custom2 = document.querySelector('#custom-2')
@@ -57,49 +30,76 @@ getApi(API_URL);
 
 const showData = (data) => {
   let HTML = '';
+  let newProductHTML = '';
+  let newProductCount = 0;
+
   data.forEach((item, index) => {
-    if (index < 4) {
-      HTML += `
-        <div class="item product col-12 col-sm-6 col-md-3" data-material="${item.material}" data-author="${item.author}" >
-          <div class="product-image">
-            <a href="#" onclick="goToDetail(event)">
-              <img src="${item.src}" alt="">
-            </a>
-            <div class="box_action">
-              <div class="quickView" onclick="showPopup(${index})">
-                Xem Nhanh
-                <i class="fas fa-eye"></i>
-              </div>
-              <div class="quickLink" onclick="goToDetail(event,${index})">
-                Chi tiết
-                <i class="fas fa-shopping-cart"></i>
-              </div>
-            </div>
-            <div class="boxTagIcon">
-              <div class="tagProItem tagCalcItem">
-                <span>-30%</span>
-              </div>
-              <div class="tagProItem tagNewItem">
-                <span>New</span>
-              </div>
-            </div>
-          </div>
-          <div class="product-title">
-            <a href="#" onclick="goToDetail(event)">${item.title_product}</a>
-          </div>
-          <div class="product-price">
-            <s class="product-price-old">${item.price_old} VNĐ</s>
-            <span class="product-price-current">${item.price_current} VNĐ</span>
-          </div>
-        </div>
-      `;
+    if (item.tagNewItem === "new" && newProductCount < 8) {
+      newProductHTML += createProductHTML(item, index);
+      newProductCount++;
+    } else if (index < 4) {
+      HTML += createProductHTML(item, index);
     }
   });
 
   productEl.innerHTML = HTML;
-  newProductList.innerHTML = HTML;
+  newProductList.innerHTML = newProductHTML;
   custom2.innerHTML = HTML;
 };
+
+const createProductHTML = (item, index) => {
+  let newTagHTML = '';
+  if (item.tagNewItem !== false) {
+    newTagHTML = `
+      <div class="tagProItem tagNewItem">
+        <span>New</span>
+      </div>
+    `;
+  }
+  return `
+    <div class="item product col-12 col-sm-6 col-md-3" data-material="${item.material}" data-author="${item.author}">
+      <div class="product-image">
+        <a href="#" onclick="goToDetail(event)">
+          <img src="${item.src}" alt="">
+        </a>
+        <div class="box_action">
+          <div class="quickView" onclick="showPopup(${index})">
+            Xem Nhanh
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="quickLink" onclick="goToDetail(event, ${index})">
+            Chi tiết
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+        </div>
+        <div class="boxTagIcon">
+          <div class="tagProItem tagCalcItem">
+            <span>${item.tagCalcItem}</span>
+          </div>
+          ${newTagHTML}
+        </div>
+      </div>
+      <div class="product-title">
+        <a href="#" onclick="goToDetail(event)">${item.title_product}</a>
+      </div>
+      <div class="product-price">
+        <s class="product-price-old">${item.price_old} VNĐ</s>
+        <span class="product-price-current">${item.price_current} VNĐ</span>
+      </div>
+    </div>
+  `;
+};
+
+
+
+
+
+
+
+
+
+
+
 
 function showPopup(index) {
   var product = '';
@@ -354,21 +354,6 @@ function addToCart() {
 
 
 
-
-const openMenuMobile = () => {
-  event.preventDefault();
-  $('.backdrop_body, .closeMenuMobile, .menu-main-mobile').addClass('active');
-  $('body').addClass('overflow-y');
-};
-
-const closeMenuMobile = () => {
-  event.preventDefault();
-  $('body').removeClass('overflow-y');
-  $('.backdrop_body, .closeMenuMobile, .menu-main-mobile').removeClass('active');
-};
-
-$('.openMenuMobile').click(openMenuMobile);
-$('.closeMenuMobile').click(closeMenuMobile);
 
 
 

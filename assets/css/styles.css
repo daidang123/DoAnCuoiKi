@@ -770,7 +770,7 @@ min-height: 60px;
   
 }
 
-.product-hot .product-title a {
+.product-title a {
   text-decoration: none;
     padding: 0;
     line-height: 16px;
@@ -789,10 +789,10 @@ min-height: 60px;
 
 }
 
-.product-hot  .product-price {
+.product-price {
   text-align: center;
 }
- .product-hot .product-price .product-price-old  {
+.product-price .product-price-old  {
     font-size: 13px;
     color: #8f8f8f;
     margin-right: 30px;
@@ -1183,10 +1183,13 @@ footer{
 
 
 
+
 /* details-product */
 
 /* <!-- review-product--> */
-
+.review-product-detail {
+  width: 100% !important;
+}
 .breadcrumbs {
     background: #fff;
     margin: 25px 0;
@@ -1672,6 +1675,118 @@ border: none;
   z-index: 1
 }
 
+.tabLeftMenu {
+  padding-left: 0;
+  position: absolute;
+  background: #f4f4f4;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  right: -120% ;
+  transition: all .3s;
+  height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tabLeftMenu.active{
+  right: 0 ;
+  opacity: 1;
+  visibility: visible;
+}
+
+.tabLeftMenu.active>li{
+  padding-left: 65px;
+}
+.tabLeftMenu.active>li.headerMenuItem{
+  padding-left: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.menuList-links li.headerMenuItem a{
+  padding-right: 10px;
+}
+
+.menuList-links li.headerMenuItem a:after{
+  content: "|";
+  display: inline-block;
+  padding-left: 5px;
+}
+.menuList-links li.headerMenuItem a:last-child{
+  padding-right: 0;
+}
+.menuList-links li.headerMenuItem a:last-child:after{
+  display: none;
+}
+
+
+/* allproduct */
+
+.menu-allproduct {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  min-height: 60px;
+  margin-top: 50px;
+}
+
+
+.menu-allproduct .item a {
+  list-style: none;
+  padding: 15px 18px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #f67227;
+  font-weight: 700;
+   margin-right: 20px;
+   display: flex;
+   align-items: center;
+}
+.menu-allproduct .item a:hover {
+  background-color: #f67227;
+  color: #fff;
+}
+
+.menu-allproduct .active a {
+  background-color: #f67227;
+  color: #fff;
+}
+
+.product-all {
+  margin-top: 50px;
+} 
+.product-all .item {
+  margin-bottom: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1853,7 +1968,7 @@ border: none;
   left: 0;
   top: 0;
 }
-.closeMenuMobile{
+.closeMenuMobile {
   position: fixed;
   top: 0;
   right: 0;
@@ -1868,6 +1983,7 @@ border: none;
   font-size: 20px;
   transition: all .3s;
   opacity: 0;
+  display: block;
 }
 .closeMenuMobile.active {
   visibility: visible;
@@ -1905,7 +2021,37 @@ border: none;
 
 
 
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
